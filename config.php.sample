@@ -1,0 +1,110 @@
+<?php
+$GLOBALS['bayesdbtype'] = 'mysql';
+$GLOBALS['bayesdbname'] = 'spamCorpus';
+
+// If you are connecting to localhost, use localhost, not 127.0.0.1. If you are connecting
+// to another machine, use the IP address to save time on the DNS lookup.
+$GLOBALS['bayesdbhost'] = 'localhost';
+$GLOBALS['bayesdbport'] = '3306';
+$GLOBALS['bayesdbuser'] = 'spamCorpus';
+$GLOBALS['bayesdbpass'] = 'corpus';
+$GLOBALS['bayesdbprefix'] = ''; // If you added a prefix to the BayesSpam tables, put it here.
+
+// Command to enable / disable the Error that shows when it can not connect to the database
+$GLOBALS['bayes_show_db_error'] = false;
+
+// Granularity
+//     user : Every user has their own Spam DB
+//     domain : Every domain has it's own Spam DB
+//     server : Every user/domain shares the same Spam DB
+//
+// If set to domain or server, bayes_allow_db_nuke should be FALSE
+$GLOBALS['bayes_granularity'] = 'user';
+
+// Allow DB Nuke
+//     true : Users can empty their spam DB if they choose
+//     false : Users may not empty their spam DB
+//
+// If Granularity is site or server, this should be FALSE
+$GLOBALS['bayes_allow_db_nuke'] = TRUE;
+
+// Domain Seperator
+//    Specify what character is used to seperate the username
+//    from the domain at your site if you are using a virtual
+//    domain solution. This only matters for domain level
+//    granularity. If using user level granularity, and this
+//    matches the domain seperator, all that happens is that
+//    BayesSpam replaces it with ! in the DB.
+$GLOBALS['bayes_domain_seperator'] = '%';
+
+// Default Scan Size
+//    The default size (in bytes) of messages to use when filtering
+$GLOBALS['bayes_default_scan_size'] = 65536; // 64 KB
+
+// Max Scan Size
+//    The maximum size (in bytes) of messages to use when filtering
+//    If a message is bigger than this, only up to the max size
+//    will be used when calculating the score
+$GLOBALS['bayes_max_size'] = 131072; // 128 KB
+
+// Let users adjust the Scan Size of not
+$GLOBALS['bayes_user_scan_size'] = true;
+
+// Cache Days
+//    How many days to cache message scores for. Longer improves
+//    performance. Shorter gives more accurate scores.
+//    Note that users do have a link to recalculate the score.
+$GLOBALS['bayes_cache_days'] = 30;
+
+// Message Store Days
+//    How many days to cache knowledge of whether a message was
+//    added to the spam or nonspam DB.
+$GLOBALS['bayes_message_store_days'] = 30;
+
+// Corpus Autorebuild Timeout
+//    How many minutes to require between automatic rebuilds of the
+//    spam Corpus. Set to 0 to always allow an automatic rebuild.
+$GLOBALS['bayes_autorebuild_timeout'] = 15;
+
+// Interesting Tokens
+//    Maximum number of tokens to use when calculating message
+//    probability. Low numbers will improve performance marginally
+//    but will reduce accuracy.
+//    0 = Unlimited
+$GLOBALS['bayes_interesting_tokens'] = 0;
+
+// Token Repeats
+//    Maximum number of times to allow a token to be used per message.
+//    0 = Unlimited
+$GLOBALS['bayes_token_repeats'] = 0;
+
+// Stats Tracking
+//    Whether or not to enable stats tracking options.
+//    If using stats tracking, Message Store Days and Cache Days
+//    should be set to at least 2 weeks to make the stats somewhat
+//    accurate.
+$GLOBALS['bayesspam_do_stats'] = TRUE;
+
+// Timing Stats
+//    Track how long messages take to parse
+$GLOBALS['bayesspam_do_timing'] = TRUE;
+
+// Serverwide Stats Tracking (NOT YET IMPLEMENTED)
+//    Whether or not to enable global stats tracking. (Requires stats options to be enabled)
+$GLOBALS['bayesspam_do_server_stats'] = TRUE;
+
+// Submit Global To Global Stats Database (NOT YET IMPLEMENTED)
+//    Whether or not to enable global stats tracking. (Requires stats options to be enabled)
+$GLOBALS['bayesspam_do_global_stats'] = TRUE;
+
+// Set the corpus size required before allowing users to "enable" certain features
+// of this plugin. Ex: BayesSpam Filtering cannot be enabled until the corpus
+// database for a user has more than bayesspam_min_nonspam_filter non-Spam emails
+// in it AND more than bayesspam_min_spam_filter Spam emails in it.
+$GLOBALS['bayesspam_min_nonspam_filter'] = 0;
+$GLOBALS['bayesspam_min_spam_filter'] = 0;
+$GLOBALS['bayesspam_min_nonspam_uncertain'] = 0;
+$GLOBALS['bayesspam_min_spam_uncertain'] = 0;
+$GLOBALS['bayesspam_min_nonspam_delete'] = 20;
+$GLOBALS['bayesspam_min_spam_delete'] = 99;
+?>
