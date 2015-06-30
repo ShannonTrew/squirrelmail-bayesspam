@@ -1,7 +1,7 @@
 # squirrelmail-bayesspam
 
 SquirrelMail Bayesian SPAM filtering plugin
-BayesSpam - Version 3.7.1
+BayesSpam - Version 3.7.2
 
 Intelligently filters spam.
 
@@ -23,7 +23,7 @@ Requirements
 ============
 
 * SquirrelMail 1.4
-* PHP >= 4.1
+* PHP >= 4.3
 * PEAR-DB
 * Compatible DB (See Docs Link Below)
     Tested with MySQL and Postgres
@@ -60,6 +60,9 @@ Credits
 Much of the code was originally borrowed from the Filters plugin as well
 as the SpamCop plugin. Thanks go to Justin Mitchell for sending the link
 above to the SM-USERS mailing list and giving me the idea to write this.
+
+Joseph Coffland <joseph@cauldrondevelopment.com> provided a patch to
+improve word parsing speed.
 
 George Vilches provided a patch to fix the mysterious 'not filtering' bug.
 
@@ -207,6 +210,10 @@ Add these lines: (just before the '} else {' line)
 
 Changes
 =======
+
+3.7.2 - Update
+    Changes:
+        Improved word parsing speed.
 
 3.7.1 - Update
 	New Features:

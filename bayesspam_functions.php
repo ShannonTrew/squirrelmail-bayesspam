@@ -416,10 +416,10 @@ function bayesspam_parse_line($string,$token_type) {
    # Only care about words between 3 and 45 characters since short words like
    # an, or, if are too common and the longest word in English (according to
    # the OED) is pneumonoultramicroscopicsilicovolcanoconiosis
-   while (preg_match('/([a-zA-Z][a-zA-Z\-_\']{0,44})[,\."\'\)\?!:;\/&]{0,5}([ \t\n\r]|$)/',$string,$matches)) {
-      $string = preg_replace('/([a-zA-Z][a-zA-Z\-_\']{0,44})[,\."\'\)\?!:;\/&]{0,5}([ \t\n\r]|$)/',' ',$string,1);
-      if (isset($matches[1]) && $matches[1] && strlen($matches[1]) >= 3)
-         $return[] = $token_type.': '.$matches[1];
+   $words = array_unique(str_word_count($string, 1, "_"));
+   foreach ($words as $word) {
+     if (3 < strlen($word) && strlen($word) < 45)
+       $return[] = $token_type . ': ' . $word;
    }
 
    return $return;

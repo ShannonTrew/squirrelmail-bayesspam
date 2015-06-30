@@ -71,6 +71,6 @@ function bayesspam_button_action_hook ($id) {
 }
 
 function bayesspam_version() {
-   return '3.7.1';
+   return '3.7.2';
 }
 ?>
