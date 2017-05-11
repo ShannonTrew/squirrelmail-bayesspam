@@ -39,7 +39,7 @@ function bayesspam_init() {
    }
 
    if(!isset($_SESSION['bayesspam_corpus'])) {
-      session_register('bayesspam_corpus');
+      $_SESSION['bayesspam_corpus'] = bayesspam_get_corpus();
    }
 }
 
